@@ -1,1 +1,1 @@
-# Repo_NR_IntegraciónNNC
+# Calculadora, Metodo Newthon Rapson e Integración Numerica Compuesta
