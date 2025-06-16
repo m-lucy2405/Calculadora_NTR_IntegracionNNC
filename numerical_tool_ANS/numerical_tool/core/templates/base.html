@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Numerical Tool{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Numerical Tool</h1>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>{% extends 'core/base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    <h2>Bienvenido a la herramienta de análisis numérico</h2>
+    <ul>
+        <li><a href="{% url 'integracion_home' %}">Integración Numérica Compuesta</a></li>
+        <li><a href="{% url 'newton_home' %}">Método Newton-Raphson</a></li>
+    </ul>
+{% endblock %}

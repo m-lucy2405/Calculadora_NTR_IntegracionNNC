@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    <h2>Bienvenido a la herramienta de análisis numérico</h2>
+    <ul>
+        <li><a href="{% url 'integracion_home' %}">Integración Numérica Compuesta</a></li>
+        <li><a href="{% url 'newton_home' %}">Método Newton-Raphson</a></li>
+    </ul>
+{% endblock %}
