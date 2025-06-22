@@ -1,0 +1,84 @@
+/* Tipografía y fondo */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Fondo degradado */
+body.fondo-degradado {
+    background: linear-gradient(to bottom right, #f4f4f8, #dff9fb);
+}
+
+h1, h2, h3, .accordion-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* Tarjetas y botones */
+.card, .accordion-item {
+    border-radius: 10px;
+}
+
+.accordion-button {
+    background-color: #4a69bd;
+    color: white;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #1e3799;
+}
+
+.btn-primary {
+    background-color: #1e3799;
+    border-color: #1e3799;
+}
+
+.btn-secondary {
+    background-color: #576574;
+    border-color: #576574;
+}
+
+/* Inputs */
+input.form-control,
+select.form-control {
+    border-radius: 8px;
+}
+
+/* Estilo blanco */
+.bg-white {
+    background-color: white !important;
+}
+
+/* Texto */
+p {
+    line-height: 1.6;
+}
+
+/* Overlay de carga */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(30, 55, 153, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    flex-direction: column;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.spinner-container {
+    text-align: center;
+    font-size: 1.2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animación simple */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
