@@ -13,6 +13,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 # Aplicaciones instaladas
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -20,10 +21,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     # Apps del proyecto
     'core',
     'apps.integracion_compuesta',
     'apps.newton_raphson',
+    'apps.usuarios',
+    
 ]
 
 # Middlewares
@@ -65,7 +69,7 @@ DATABASES = {
         'USER': os.getenv('MYSQL_USER'),
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
         'HOST': os.getenv('MYSQL_HOST', 'localhost'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
+        'PORT': os.getenv('MYSQL_PORT', '3307'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
@@ -99,9 +103,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# Archivos multimedia (si los usas)
+# Archivos multimedia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Configuración por defecto para auto campos
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de autenticación
+LOGIN_URL = '/usuarios/login'  # o como se defina en tu core
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

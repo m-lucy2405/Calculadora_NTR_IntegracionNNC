@@ -1,0 +1,33 @@
+/* Estilos globales */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+}
+
+.animated-header {
+    animation: slideDown 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.method-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.method-card.hover-rise:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Animaciones clave */
+@keyframes slideDown {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

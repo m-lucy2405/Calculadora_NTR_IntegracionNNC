@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h2 class="display-5 fw-semibold mb-3">Bienvenido a la Herramienta de Análisis Numérico</h2>
+    <p class="lead">Explora nuestros métodos con visualizaciones, pasos interactivos y documentación útil.</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg h-100 method-card hover-rise">
+            <div class="card-body text-center">
+                <h5 class="card-title">Método Newton-Raphson</h5>
+                <p class="card-text">Calcula raíces de funciones con este método iterativo detallado.</p>
+                <a href="{% url 'newton_raphson:newton_home' %}" class="btn btn-primary">Ir al método</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg h-100 method-card hover-rise">
+            <div class="card-body text-center">
+                <h5 class="card-title">Integración Numérica Compuesta</h5>
+                <p class="card-text">Calcula áreas aproximadas mediante reglas compuestas.</p>
+                <a href="{% url 'integracion_compuesta:integracion_home' %}" class="btn btn-primary">Ir al método</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
