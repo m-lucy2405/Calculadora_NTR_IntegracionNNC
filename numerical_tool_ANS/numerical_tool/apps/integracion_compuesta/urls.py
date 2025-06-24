@@ -3,6 +3,8 @@ from . import views
 
 app_name = 'integracion_compuesta'
 
+app_name = 'integracion_compuesta'
+
 urlpatterns = [
     path('', views.index, name='integracion_home'),
 ]
