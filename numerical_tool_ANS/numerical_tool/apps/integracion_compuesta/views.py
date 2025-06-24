@@ -6,7 +6,6 @@ from .models import HistorialIntegracion
 from .utils import evaluar_funcion, trapecio_compuesto_detallado_educativo, generar_grafica
 import time
 
-@login_required
 def index(request):
     if request.method == 'POST':
         funcion = request.POST.get('funcion', '').strip()
@@ -50,7 +49,6 @@ def index(request):
 
     return render(request, 'integracion_compuesta/index.html')
 
-@login_required
 def resultado(request):
     return redirect('integracion_compuesta:integracion_home')
 

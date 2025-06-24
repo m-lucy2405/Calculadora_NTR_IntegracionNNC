@@ -1,18 +1,19 @@
 {# apps/integracion_compuesta/templates/integracion_compuesta/result.html #}
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
+
 <div class="container py-5 position-relative">
     <h2 class="mb-4 text-center">📘 Resultado – Integración Compuesta</h2>
 
     <div class="alert alert-success mt-4 bg-gradient bg-success text-white p-4 rounded shadow">
-        <h5 class="mb-2">✅ Resultado aproximado de la integral:</h5>
+        <h5 class="mb-2">Resultado aproximado de la integral:</h5>
         <div class="fs-5">$$ \int_a^b f(x)\,dx \approx {{ resultado }} $$</div>
     </div>
 
     {% if grafica %}
     <div class="mt-4 text-center">
-        <h5>📊 Visualización Gráfica del Método</h5>
+        <h5>Visualización Gráfica del Método</h5>
         <img src="data:image/png;base64,{{ grafica }}" class="img-fluid border rounded shadow" alt="Gráfico del área bajo la curva">
     </div>
     {% endif %}
