@@ -120,7 +120,7 @@ def generar_grafica(funcion_str, a, b, n):
     plt.close(fig)
     return imagen_base64
 
-def integracion_view(request):
+def index(request):
     contexto = {
         'resultado': None,
         'error': None,
@@ -163,4 +163,4 @@ def integracion_view(request):
         except ValueError:
             contexto['error'] = "Por favor, ingresa valores numéricos válidos en los campos correspondientes."
 
-    return render(request, 'integracion_compuesta/integracion.html', contexto)
+    return render(request, 'integracion_compuesta/index.html', contexto)
