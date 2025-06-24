@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Resultado</h2>
+    <p><strong>Función:</strong> {{ funcion }}</p>
+    <p><strong>Límite inferior:</strong> {{ a }}</p>
+    <p><strong>Límite superior:</strong> {{ b }}</p>
+    <p><strong>n (subintervalos):</strong> {{ n }}</p>
+    <p><strong>Resultado final:</strong> {{ resultado }}</p>
+
+    <h4 class="mt-4">Pasos del cálculo:</h4>
+    <ul>
+        {% for paso in pasos %}
+            <li>{{ paso }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'integracion_compuesta:index' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Historial de Cálculos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Función</th>
+                <th>[a, b]</th>
+                <th>n</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in resultados %}
+                <tr>
+                    <td>{{ r.fecha|date:"d/m/Y H:i" }}</td>
+                    <td>{{ r.funcion }}</td>
+                    <td>[{{ r.a }}, {{ r.b }}]</td>
+                    <td>{{ r.n }}</td>
+                    <td>{{ r.resultado }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
