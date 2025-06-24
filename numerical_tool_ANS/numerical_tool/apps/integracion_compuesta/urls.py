@@ -4,6 +4,6 @@ from . import views
 app_name = 'integracion_compuesta'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='integracion_home'),
     path('historial/', views.historial, name='historial'),
 ]

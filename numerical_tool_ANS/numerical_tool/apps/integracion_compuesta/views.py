@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import IntegracionForm
 from .utils import integrar_compuesto_trapecio
+from django.contrib.auth.decorators import login_required
 from .models import IntegracionResultado
 
 def index(request):
@@ -36,6 +37,7 @@ def index(request):
 
     return render(request, 'integracion_compuesta/index.html', {'form': form})
 
+@login_required
 def historial(request):
     resultados = IntegracionResultado.objects.all().order_by('-fecha')
     return render(request, 'integracion_compuesta/historial.html', {'resultados': resultados})

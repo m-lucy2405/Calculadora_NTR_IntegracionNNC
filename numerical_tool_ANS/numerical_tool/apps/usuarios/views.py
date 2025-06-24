@@ -15,7 +15,7 @@ def registro_usuario(request):
             user = form.save()
             login(request, user)
             messages.success(request, '¡Registro exitoso! Bienvenido.')
-            return redirect('core:index')
+            return redirect('core:home')
     else:
         form = RegistroUsuarioForm()
     return render(request, 'usuarios/register.html', {'form': form})
@@ -27,12 +27,12 @@ def login_usuario(request):
         usuario = authenticate(request, username=username, password=password)
         if usuario is not None:
             login(request, usuario)
-            return redirect('core:index')
+            return redirect('core:home')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
     return render(request, 'usuarios/login.html')
 
 def logout_usuario(request):
     logout(request)
-    return redirect('core:index')
+    return redirect('core:home')
 
