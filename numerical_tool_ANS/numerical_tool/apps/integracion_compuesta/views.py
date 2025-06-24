@@ -1,43 +1,60 @@
-from django.shortcuts import render, redirect
-from .forms import IntegracionForm
-from .utils import integrar_compuesto_trapecio
-from django.contrib.auth.decorators import login_required
-from .models import IntegracionResultado
+# apps/integracion_compuesta/views.py
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import HistorialIntegracion
+from .utils import evaluar_funcion, trapecio_compuesto_detallado_educativo, generar_grafica
+import time
+
+@login_required
 def index(request):
     if request.method == 'POST':
-        form = IntegracionForm(request.POST)
-        if form.is_valid():
-            funcion = form.cleaned_data['funcion']
-            a = form.cleaned_data['a']
-            b = form.cleaned_data['b']
-            n = form.cleaned_data['n']
+        funcion = request.POST.get('funcion', '').strip()
+        try:
+            a = float(request.POST.get('a', ''))
+            b = float(request.POST.get('b', ''))
+            n = int(request.POST.get('n', ''))
 
-            resultado, pasos = integrar_compuesto_trapecio(funcion, a, b, n)
+            if n <= 0 or a >= b:
+                raise ValueError("Intervalo o n inválido")
 
-            IntegracionResultado.objects.create(
+            time.sleep(1.2)
+            resultado_detallado, error = trapecio_compuesto_detallado_educativo(funcion, a, b, n)
+            if error or not resultado_detallado:
+                return render(request, 'integracion_compuesta/index.html', {
+                    'error': error[0] if error else 'Error al evaluar la función.',
+                    'funcion': funcion, 'a': a, 'b': b, 'n': n
+                })
+
+            grafica = generar_grafica(funcion, a, b, n)
+            HistorialIntegracion.objects.create(
+                usuario=request.user,
                 funcion=funcion,
                 a=a,
                 b=b,
                 n=n,
-                resultado=resultado
+                resultado=resultado_detallado['resultado']
             )
 
-            context = {
-                'funcion': funcion,
-                'a': a,
-                'b': b,
-                'n': n,
-                'resultado': resultado,
-                'pasos': pasos
-            }
-            return render(request, 'integracion_compuesta/result.html', context)
-    else:
-        form = IntegracionForm()
+            return render(request, 'integracion_compuesta/result.html', {
+                'resultado': resultado_detallado['resultado'],
+                'secciones': resultado_detallado['secciones'],
+                'grafica': grafica
+            })
 
-    return render(request, 'integracion_compuesta/index.html', {'form': form})
+        except Exception as e:
+            return render(request, 'integracion_compuesta/index.html', {
+                'error': 'Error al procesar los datos. Verifica tus entradas.',
+                'funcion': funcion, 'a': request.POST.get('a', ''), 'b': request.POST.get('b', ''), 'n': request.POST.get('n', '')
+            })
+
+    return render(request, 'integracion_compuesta/index.html')
+
+@login_required
+def resultado(request):
+    return redirect('integracion_compuesta:integracion_home')
 
 @login_required
 def historial(request):
-    resultados = IntegracionResultado.objects.all().order_by('-fecha')
-    return render(request, 'integracion_compuesta/historial.html', {'resultados': resultados})
+    historial = HistorialIntegracion.objects.filter(usuario=request.user).order_by('-fecha')
+    return render(request, 'integracion_compuesta/historial.html', {'historial': historial})
