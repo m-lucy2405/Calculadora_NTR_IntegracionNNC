@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentación: Método de Newton-Raphson</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #bbdefb);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #0d47a1;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #0d47a1;
+      margin-top: 2rem;
+    }
+    pre {
+      background: #f1f1f1;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      color: #c7254e;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #0d47a1;
+      color: white;
+      margin-top: 3rem;
+    }
+    .formula {
+      background-color: #e3f2fd;
+      padding: 1rem;
+      border-left: 4px solid #1976d2;
+      margin: 1rem 0;
+      font-family: monospace;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📘 Documentación del Método de Newton-Raphson</h1>
+  </header>
+  <main>
+    <h2>🔍 ¿Qué es el método de Newton-Raphson?</h2>
+    <p>
+      El método de Newton-Raphson es un algoritmo numérico usado para encontrar las raíces de funciones no lineales. Utiliza derivadas para iterar y aproximarse progresivamente a una solución.
+    </p>
+
+    <h2>🎯 Objetivo</h2>
+    <p>Encontrar un valor \( x \) tal que \( f(x) = 0 \).</p>
+
+    <h2>🧠 Origen y cuándo usarlo</h2>
+    <p>
+      Fue introducido por Isaac Newton y Joseph Raphson en el siglo XVII. Es ideal cuando se tiene una buena estimación inicial y la derivada de la función es fácil de calcular.
+    </p>
+
+    <h2>📐 Fórmula del método</h2>
+    <div class="formula">
+      $$ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} $$
+    </div>
+
+    <h2>📊 Pasos del algoritmo</h2>
+    <ul>
+      <li>1. Elegir una estimación inicial \( x_0 \)</li>
+      <li>2. Calcular \( f(x_0) \) y \( f'(x_0) \)</li>
+      <li>3. Sustituir en la fórmula para obtener \( x_1 \)</li>
+      <li>4. Repetir el proceso hasta que el error sea aceptable</li>
+    </ul>
+
+    <h2>📈 Ejemplo práctico</h2>
+    <p>Resolver \( f(x) = x^2 - 2 \), con \( x_0 = 1 \)</p>
+    <ul>
+      <li>\( f(x) = x^2 - 2 \)</li>
+      <li>\( f'(x) = 2x \)</li>
+      <li>\( x_1 = 1 - \frac{1^2 - 2}{2 \cdot 1} = 1.5 \)</li>
+      <li>\( x_2 = 1.5 - \frac{1.5^2 - 2}{2 \cdot 1.5} \approx 1.4167 \)</li>
+      <li>\( x_3 \approx 1.4142 \) (valor cercano a \( \sqrt{2} \))</li>
+    </ul>
+
+    <h2>💻 Pseudocódigo</h2>
+    <pre><code>func newton_raphson(f, df, x0, tol, max_iter):
+    for i in range(max_iter):
+        x1 = x0 - f(x0)/df(x0)
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    return x1</code></pre>
+
+    <h2>✅ Ventajas</h2>
+    <ul>
+      <li>Alta velocidad de convergencia si se parte de una buena estimación</li>
+      <li>Fácil de implementar</li>
+    </ul>
+
+    <h2>⚠️ Desventajas</h2>
+    <ul>
+      <li>No siempre converge</li>
+      <li>Requiere conocer la derivada de la función</li>
+      <li>Puede divergir si la estimación inicial es mala</li>
+    </ul>
+
+    <h2>❓ Preguntas frecuentes</h2>
+    <ul>
+      <li><strong>¿Qué pasa si \( f'(x) = 0 \)?</strong> → No se puede continuar, hay que cambiar la estimación inicial.</li>
+      <li><strong>¿Funciona con funciones trigonométricas?</strong> → Sí, mientras se pueda calcular su derivada.</li>
+      <li><strong>¿Puedo usarlo en varias dimensiones?</strong> → Existe una extensión para sistemas no lineales.</li>
+    </ul>
+  </main>
+  <footer>
+    <p>&copy; Documentación del Método de Newton Raphson</p>
+  </footer>
+</body>
+</html>
