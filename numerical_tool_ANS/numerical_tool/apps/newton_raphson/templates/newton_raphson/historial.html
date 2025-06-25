@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% block title %}Historial - Newton-Raphson{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Historial de Operaciones - Método de Newton-Raphson</h2>
+
+    {% if historial %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Función</th>
+                    <th>Valor inicial</th>
+                    <th>Tolerancia</th>
+                    <th>Iteraciones máx.</th>
+                    <th>Raíz aprox.</th>
+                    <th>Error final</th>
+                    <th>Iteraciones</th>
+                    <th>Éxito</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in historial %}
+                <tr>
+                    <td>{{ item.funcion }}</td>
+                    <td>{{ item.valor_inicial }}</td>
+                    <td>{{ item.tolerancia }}</td>
+                    <td>{{ item.iteraciones_maximas }}</td>
+                    <td>{{ item.raiz_aproximada }}</td>
+                    <td>{{ item.error_final }}</td>
+                    <td>{{ item.total_iteraciones }}</td>
+                    <td>
+                        {% if item.exito %}
+                            <span class="badge bg-success">Sí</span>
+                        {% else %}
+                            <span class="badge bg-danger">No</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ item.fecha|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No hay historial de Newton-Raphson.</div>
+    {% endif %}
+</div>
+{% endblock %}

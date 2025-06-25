@@ -1,0 +1,34 @@
+{# apps/integracion_compuesta/templates/integracion_compuesta/historial.html #}
+
+<div class="container py-4">
+    <h2 class="mb-4">🕘 Historial de Integraciones Compuestas</h2>
+
+    {% if historial %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Función</th>
+                <th>a</th>
+                <th>b</th>
+                <th>n</th>
+                <th>Resultado</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in historial %}
+            <tr>
+                <td>{{ item.funcion }}</td>
+                <td>{{ item.a }}</td>
+                <td>{{ item.b }}</td>
+                <td>{{ item.n }}</td>
+                <td>{{ item.resultado }}</td>
+                <td>{{ item.fecha|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+<div class="alert alert-info">No hay historial de integración compuesta.</div>
+{% endif %}
+</div>

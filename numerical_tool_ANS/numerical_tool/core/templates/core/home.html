@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5 fade-in">
+    <h2 class="display-5 fw-semibold mb-3 text-primary">🎯 Bienvenido a la Herramienta de Análisis Numérico</h2>
+    <p class="lead text-muted">Explora nuestros métodos con visualizaciones dinámicas, pasos interactivos y documentación clara.</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg h-100 method-card hover-rise bg-white text-center p-4">
+            <div class="mb-3">
+                <img src="{% static 'images/newton_icon.png' %}" alt="Newton Icon" class="img-fluid" style="max-width: 60px;">
+            </div>
+            <h5 class="card-title text-primary">Método Newton-Raphson</h5>
+            <p class="card-text text-muted">Calcula raíces de funciones con pasos iterativos detallados y visualización gráfica.</p>
+            <a href="{% url 'newton_raphson:newton_home' %}" class="btn btn-primary mt-2">Ir al método</a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg h-100 method-card hover-rise bg-white text-center p-4">
+            <div class="mb-3">
+                <img src="{% static 'images/integral_icon.png' %}" alt="Integral Icon" class="img-fluid" style="max-width: 60px;">
+            </div>
+            <h5 class="card-title text-success">Integración Numérica Compuesta</h5>
+            <p class="card-text text-muted">Aproxima áreas bajo la curva con explicaciones paso a paso usando el método del trapecio compuesto.</p>
+            <a href="{% url 'integracion_compuesta:integracion_home' %}" class="btn btn-success mt-2">Ir al método</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{# apps/integracion_compuesta/templates/integracion_compuesta/result.html #}
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5 position-relative">
+    <h2 class="mb-4 text-center">📘 Resultado – Integración Compuesta</h2>
+
+    <div class="alert alert-success mt-4 bg-gradient bg-success text-white p-4 rounded shadow">
+        <h5 class="mb-2">Resultado aproximado de la integral:</h5>
+        <div class="fs-5">$$ \int_a^b f(x)\,dx \approx {{ resultado }} $$</div>
+    </div>
+
+    {% if grafica %}
+    <div class="mt-4 text-center">
+        <h5>Visualización Gráfica del Método</h5>
+        <img src="data:image/png;base64,{{ grafica }}" class="img-fluid border rounded shadow" alt="Gráfico del área bajo la curva">
+    </div>
+    {% endif %}
+
+    {% if secciones %}
+    <div class="accordion mt-5" id="pasosAccordion">
+        {% for seccion in secciones %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                <button class="accordion-button collapsed bg-secondary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}">
+                    {{ seccion.titulo|safe }}
+                </button>
+            </h2>
+            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#pasosAccordion">
+                <div class="accordion-body">
+                    <p>{{ seccion.explicacion|safe }}</p>
+                    {% if seccion.formula %}
+                    <p>$$ {{ seccion.formula }} $$</p>
+                    {% endif %}
+                    {% if seccion.pasos %}
+                    <ul class="list-group">
+                        {% for paso in seccion.pasos %}
+                        <li class="list-group-item">{{ paso|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mt-5 p-3 bg-white shadow-sm rounded border">
+        <h4>📐 Fórmula Utilizada (Regla del Trapecio Compuesta):</h4>
+        <p>$$ \int_a^b f(x)\,dx \approx \frac{h}{2}\left[f(x_0) + 2\sum_{i=1}^{n-1} f(x_i) + f(x_n)\right] $$</p>
+        <ul>
+            <li>$$ h = \frac{b - a}{n} $$</li>
+            <li>$$ x_i = a + i \cdot h, \quad \text{para } i = 0, 1, \dots, n $$</li>
+        </ul>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'integracion_compuesta:integracion_home' %}" class="btn btn-outline-primary">← Realizar otro cálculo</a>
+        <a href="{% url 'usuarios:historial_general' %}"  class="btn btn-outline-primary">Ver mi historial</a>
+    </div>
+</div>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}
