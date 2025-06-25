@@ -107,10 +107,5 @@ def generar_grafica(funcion_str, a, b, n):
         ax.text(xi, -0.05 * max(yi_vals), f"$x_{{{i}}}$", ha='center', fontsize=9)
 
     ax.legend()
-    buffer = BytesIO()
     fig.tight_layout()
-    fig.savefig(buffer, format="png")
-    buffer.seek(0)
-    imagen_base64 = base64.b64encode(buffer.read()).decode("utf-8")
-    plt.close(fig)
-    return imagen_base64
+    return fig

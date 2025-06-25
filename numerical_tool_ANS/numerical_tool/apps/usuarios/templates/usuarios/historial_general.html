@@ -1,0 +1,19 @@
+<div class="container py-4">
+    <h2 class="mb-4">🕘 Historial de Usuario</h2>
+    <ul class="nav nav-tabs" id="historialTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="integracion-tab" data-bs-toggle="tab" data-bs-target="#integracion" type="button" role="tab">Integración Compuesta</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="newton-tab" data-bs-toggle="tab" data-bs-target="#newton" type="button" role="tab">Newton-Raphson</button>
+        </li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="integracion" role="tabpanel">
+            {% include 'integracion_compuesta/historial.html' with historial=historial_integracion %}
+        </div>
+        <div class="tab-pane fade" id="newton" role="tabpanel">
+            {% include 'newton_raphson/historial.html' with historial=historial_newton %}
+        </div>
+    </div>
+</div>

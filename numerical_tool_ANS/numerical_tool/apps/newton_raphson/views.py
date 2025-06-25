@@ -48,5 +48,10 @@ def resolver(request):
 
 @login_required
 def historial(request):
-    historial = NRHistorial.objects.filter(usuario=request.user).order_by('-fecha')
-    return render(request, 'newton_raphson/historial.html', {'historial': historial})
+    historial_integracion = NRHistorial.objects.filter(usuario=request.user).order_by('-fecha')
+    historial_newton = NRHistorial.objects.filter(usuario=request.user).order_by('-fecha')
+    
+    return render(request, 'usuarios/historial_general.html', {
+        'historial_integracion': historial_integracion,
+        'historial_newton': historial_newton,
+    })
