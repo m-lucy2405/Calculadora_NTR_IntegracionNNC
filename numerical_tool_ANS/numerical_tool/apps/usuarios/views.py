@@ -1,3 +1,4 @@
+from apps.integracion_compuesta.models import HistorialIntegracion
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistroUsuarioForm
@@ -54,9 +55,11 @@ def logout_usuario(request):
 def perfil_usuario(request):
     return render(request, 'usuarios/perfil.html')
 
-@login_required
 def historial_general(request):
-    return render(request, 'usuarios/historial_general.html')
+    historial_integracion = HistorialIntegracion.objects.filter(usuario=request.user).order_by('-fecha')
+    return render(request, 'usuarios/historial_general.html', {
+        'historial_integracion': historial_integracion,
+    })
 
 
 

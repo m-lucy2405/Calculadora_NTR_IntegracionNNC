@@ -1,24 +1,85 @@
 {% extends 'core/base.html' %}
-{% load static %}
-{% block title %}Historial de Usuario{% endblock %}
+{% block title %}Historial General{% endblock %}
 {% block content %}
-
-<div class="container py-4">
-    <h2 class="mb-4">Historial de Usuario</h2>
-    <ul class="nav nav-tabs" id="historialTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="integracion-tab" data-bs-toggle="tab" data-bs-target="#integracion" type="button" role="tab">Integración Compuesta</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="newton-tab" data-bs-toggle="tab" data-bs-target="#newton" type="button" role="tab">Newton-Raphson</button>
-        </li>
-    </ul>
-    <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="integracion" role="tabpanel">
-            {% include 'integracion_compuesta/historial.html' with historial=historial_integracion %}
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Tarjeta Integración Compuesta -->
+        <div class="col-12 col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Historial de Integración Compuesta</h4>
+                </div>
+                <div class="card-body">
+                    {% if historial_integracion %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Función</th>
+                                        <th>a</th>
+                                        <th>b</th>
+                                        <th>n</th>
+                                        <th>Resultado</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in historial_integracion %}
+                                    <tr>
+                                        <td>{{ item.funcion }}</td>
+                                        <td>{{ item.a }}</td>
+                                        <td>{{ item.b }}</td>
+                                        <td>{{ item.n }}</td>
+                                        <td>{{ item.resultado }}</td>
+                                        <td>{{ item.fecha|date:"d/m/Y H:i" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info mb-0">No hay historial de integración compuesta.</div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="tab-pane fade" id="newton" role="tabpanel">
-            {% include 'newton_raphson/historial.html' with historial=historial_newton %}
+        <!-- Tarjeta Newton-Raphson -->
+        <div class="col-12 col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Historial de Newton-Raphson</h4>
+                </div>
+                <div class="card-body">
+                    {% if historial_newton %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Función</th>
+                                        <th>x₀</th>
+                                        <th>Iteraciones</th>
+                                        <th>Resultado</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in historial_newton %}
+                                    <tr>
+                                        <td>{{ item.funcion }}</td>
+                                        <td>{{ item.x0 }}</td>
+                                        <td>{{ item.iteraciones }}</td>
+                                        <td>{{ item.resultado }}</td>
+                                        <td>{{ item.fecha|date:"d/m/Y H:i" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info mb-0">No hay historial de Newton-Raphson.</div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
