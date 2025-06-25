@@ -4,6 +4,8 @@ from .utils import newton_raphson_method
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
 from .models import HistorialNewtonRaphson as NRHistorial
+from apps.integracion_compuesta.models import HistorialIntegracion
+
 
 # Vista para manejar el formulario de Newton-Raphson y mostrar resultados
 
@@ -48,7 +50,7 @@ def resolver(request):
 
 @login_required
 def historial(request):
-    historial_integracion = NRHistorial.objects.filter(usuario=request.user).order_by('-fecha')
+    historial_integracion = HistorialIntegracion.objects.filter(usuario=request.user).order_by('-fecha')
     historial_newton = NRHistorial.objects.filter(usuario=request.user).order_by('-fecha')
     
     return render(request, 'usuarios/historial_general.html', {
