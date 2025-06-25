@@ -1,12 +1,36 @@
 {% extends 'core/base.html' %}
 {% block title %}Registro{% endblock %}
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Registro de Usuario</h2>
-    <form method="post" class="col-md-6 mx-auto">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success w-100">Registrarse</button>
-    </form>
+<div class="container d-flex align-items-center justify-content-center min-vh-100" style="background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%);">
+    <div class="card shadow-lg p-5" style="max-width: 500px; width: 100%; border-radius: 1.5rem;">
+        <div class="text-center mb-4">
+            <i class="bi bi-person-plus-fill" style="font-size: 3.5rem; color: #198754;"></i>
+            <h2 class="mt-3 mb-1 fw-bold">Crear Cuenta</h2>
+            <p class="text-muted mb-0">Completa el formulario para registrarte</p>
+        </div>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger mb-4">
+                    Por favor corrige los errores debajo.
+                </div>
+            {% endif %}
+            <div class="row g-4">
+                {% for field in form %}
+                    <div class="col-12">
+                        <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">{{ field.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success w-100 py-2 mt-4 fs-5">Registrarse</button>
+        </form>
+        <div class="mt-4 text-center">
+            <small>¿Ya tienes una cuenta? <a href="{% url 'usuarios:login' %}">Inicia sesión</a></small>
+        </div>
+    </div>
 </div>
 {% endblock %}

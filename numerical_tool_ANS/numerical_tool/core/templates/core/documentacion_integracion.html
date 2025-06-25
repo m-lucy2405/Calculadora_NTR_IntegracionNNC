@@ -1,72 +1,81 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Documentación – Integración Compuesta</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom right, #f4f4f8, #dff9fb);
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #1e3799;
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .container {
-            padding: 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            color: #1e3799;
-            border-bottom: 2px solid #1e3799;
-            padding-bottom: 0.3rem;
-        }
-        pre, code {
-            background: #f0f0f0;
-            padding: 0.75rem;
-            border-radius: 8px;
-            display: block;
-            overflow-x: auto;
-        }
-        .highlight {
-            background-color: #e8f0fe;
-            padding: 1rem;
-            border-left: 5px solid #1e3799;
-            border-radius: 6px;
-            margin: 1rem 0;
-        }
-        ul {
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        footer {
-            text-align: center;
-            background: #1e3799;
-            color: white;
-            padding: 1rem;
-            margin-top: 3rem;
-        }
-    </style>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-<body>
-    <header>
-        <h1>📘 Documentación: Integración Numérica Compuesta</h1>
-    </header>
-    <div class="container">
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Documentación – Integración Compuesta{% endblock %}
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #f4f4f8, #dff9fb);
+        color: #333;
+        line-height: 1.6;
+    }
+    header {
+        background-color: #1e3799;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      margin-top: 40px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .container1 {
+        padding: 2rem 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    h2 {
+        color: #1e3799;
+        border-bottom: 2px solid #1e3799;
+        padding-bottom: 0.3rem;
+    }
+    pre, code {
+        background: #f0f0f0;
+        padding: 0.75rem;
+        border-radius: 8px;
+        display: block;
+        overflow-x: auto;
+    }
+    .highlight {
+        background-color: #e8f0fe;
+        padding: 1rem;
+        border-left: 5px solid #1e3799;
+        border-radius: 6px;
+        margin: 1rem 0;
+    }
+    ul {
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    footer {
+        text-align: center;
+        background: #1e3799;
+        color: white;
+        padding: 1rem;
+        margin-top: 3rem;
+    }
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<header>
+    <h1>📘 Documentación: Integración Numérica Compuesta</h1>
+</header>
+
+<main>
+    <div class="container1">
         <section>
             <h2>¿Qué es la integración numérica compuesta?</h2>
             <p>La integración numérica compuesta es una técnica para aproximar el valor de una integral definida \( \int_a^b f(x)\,dx \), especialmente útil cuando no se puede obtener una solución analítica exacta. A diferencia de los métodos simples que usan un solo subintervalo, los métodos compuestos dividen el intervalo \([a, b]\) en múltiples subintervalos pequeños, mejorando así la precisión.</p>
         </section>
-
         <section>
             <h2>Fórmula del Trapecio Compuesto</h2>
             <div class="highlight">
@@ -75,7 +84,6 @@
                 Donde \( h = \frac{b - a}{n} \) y \( x_i = a + i \cdot h \)
             </div>
         </section>
-
         <section>
             <h2>Pasos del algoritmo</h2>
             <ol>
@@ -86,7 +94,6 @@
                 <li>Obtener la suma ponderada y multiplicar por \(\frac{h}{2}\).</li>
             </ol>
         </section>
-
         <section>
             <h2>Ejemplo práctico</h2>
             <p>Calcular aproximadamente:</p>
@@ -102,7 +109,6 @@
             </ul>
             <p>El valor exacto es \( \frac{8}{3} = 2.6666\ldots \), por lo tanto la aproximación es bastante buena.</p>
         </section>
-
         <section>
             <h2>Ventajas y desventajas del método del trapecio compuesto</h2>
             <h4>✅ Ventajas</h4>
@@ -121,13 +127,13 @@
 
         <section>
             <h2>Pseudocódigo del algoritmo</h2>
-            <pre><code>Ingresar f(x), a, b, n
-h = (b - a) / n
-suma = f(a) + f(b)
-para i desde 1 hasta n-1:
-    xi = a + i * h
-    suma += 2 * f(xi)
-resultado = (h / 2) * suma</code></pre>
+                <pre><code>Ingresar f(x), a, b, n
+                h = (b - a) / n
+                suma = f(a) + f(b)
+                para i desde 1 hasta n-1:
+                xi = a + i * h
+                suma += 2 * f(xi)
+                resultado = (h / 2) * suma</code></pre>
         </section>
 
         <section>
@@ -140,9 +146,10 @@ resultado = (h / 2) * suma</code></pre>
             </ul>
         </section>
     </div>
+</main>
 
     <footer>
         <p>&copy; Documentación del Método de Integración Numérica Compuesta</p>
     </footer>
-</body>
-</html>
+
+{% endblock %}

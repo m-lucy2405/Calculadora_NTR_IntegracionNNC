@@ -1,71 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Documentación: Método de Newton-Raphson</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e3f2fd, #bbdefb);
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #0d47a1;
-      color: white;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      color: #0d47a1;
-      margin-top: 2rem;
-    }
-    pre {
-      background: #f1f1f1;
-      padding: 1rem;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    code {
-      color: #c7254e;
-    }
-    ul {
-      list-style-type: square;
-      padding-left: 1.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #0d47a1;
-      color: white;
-      margin-top: 3rem;
-    }
-    .formula {
-      background-color: #e3f2fd;
-      padding: 1rem;
-      border-left: 4px solid #1976d2;
-      margin: 1rem 0;
-      font-family: monospace;
-    }
-  </style>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-<body>
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Documentación - Método de Newton-Raphson{% endblock %}
+{% block content %}
+
+<style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #e3f2fd, #bbdefb);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      header {
+        background-color: #0d47a1;
+        color: white;
+        padding: 1rem 2rem;
+        text-align: center;
+      }
+      main {
+        padding: 2rem;
+        max-width: 900px;
+        margin: auto;
+        margin-top: 40px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #0d47a1;
+        margin-top: 2rem;
+      }
+      pre {
+        background: #f1f1f1;
+        padding: 1rem;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      code {
+        color: #c7254e;
+      }
+      ul {
+        list-style-type: square;
+        padding-left: 1.5rem;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #0d47a1;
+        color: white;
+        margin-top: 3rem;
+      }
+      .formula {
+        background-color: #e3f2fd;
+        padding: 1rem;
+        border-left: 4px solid #1976d2;
+        margin: 1rem 0;
+        font-family: monospace;
+      }
+    </style>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <header>
     <h1>📘 Documentación del Método de Newton-Raphson</h1>
   </header>
+
   <main>
     <h2>🔍 ¿Qué es el método de Newton-Raphson?</h2>
     <p>
@@ -132,8 +133,9 @@
       <li><strong>¿Puedo usarlo en varias dimensiones?</strong> → Existe una extensión para sistemas no lineales.</li>
     </ul>
   </main>
+
   <footer>
     <p>&copy; Documentación del Método de Newton Raphson</p>
   </footer>
-</body>
-</html>
+  
+{% endblock %}
